@@ -23,7 +23,7 @@ def cadastro(request):
 
 @login_required
 def parceiros(request):
-    if User.is_authenticated():
+    if User.is_authenticated:
         coletas = Coleta.objects.all()  # Busca todos os registros do modelo Coleta
         return render(request, 'recicle/pages/parceiros.html', {'coletas': coletas})  # Renderiza o template 'parceiros.html'
     else:
