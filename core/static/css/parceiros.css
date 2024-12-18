@@ -1,0 +1,41 @@
+/* Estilo da página Parceiros */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Cor de fundo */
+    color: #333; /* Cor do texto */
+}
+
+/* Estilo do cabeçalho */
+h1 {
+    text-align: center;
+    color: #028a0f; /* Verde */
+    margin-bottom: 20px;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%; /* Largura total */
+    border-collapse: collapse; /* Remove espaços entre as bordas */
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Bordas das células */
+    padding: 10px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento à esquerda */
+}
+
+th {
+    background-color: #028a0f; /* Verde */
+    color: white; /* Cor do texto do cabeçalho */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cor de fundo das linhas pares */
+}
+
+tr:hover {
+    background-color: #ddd; /* Cor ao passar o mouse */
+}

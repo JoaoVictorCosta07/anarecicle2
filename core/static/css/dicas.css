@@ -1,0 +1,127 @@
+/* Resetando margens e padding */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilo do Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    background-color: #028a0f;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mensagem_login {
+    color: white;
+}
+
+/* Estilo da Introdução */
+.intro {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+}
+
+.intro h1 {
+    font-size: 36px;
+    color: #028a0f;
+    margin-bottom: 20px;
+}
+
+.intro p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilo das Dicas (Quato Colunas) */
+.tips {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+.tip {
+    text-align: center;
+    width: 30%;
+}
+
+.tip img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+}
+
+.tip h2 {
+    font-size: 24px;
+    color: #028a0f;
+    margin: 15px 0;
+}
+
+.tip p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Estilo da Frase de Efeito */
+.call-to-action {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f4f4f4;
+    font-style: italic;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Rodapé */
+footer {
+    background-color: #028a0f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo da seção de ícones sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.social-icons i {
+    font-size: 28px;
+}
