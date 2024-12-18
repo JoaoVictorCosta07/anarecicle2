@@ -1,42 +1,92 @@
-/* Resetando margens e padding */
-body {
-    font-family: Arial, sans-serif;
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
-/* Estilo do Header */
+html, body {
+    height: 100%;
+    overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f8f8;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Garante que o footer esteja no final */
+    min-height: 100vh; /* Força o corpo a ocupar toda a altura da janela */
+}
+
+/* Estilo do cabeçalho */
 header {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 50px;
-    background-color: #028a0f;
-    align-items: center;
+    justify-content: space-between; /* Espaça os elementos (logo, menu e botão) */
+    align-items: center; /* Alinha verticalmente */
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
 }
 
+/* Logo */
 .logo {
-    width: 80px;
+    max-height: 50px; /* Limita a altura */
+    display: block; /* Garante que não tenha margens extras */
 }
 
+/* Menu - Visível em telas maiores */
 .menu {
-    list-style-type: none;
     display: flex;
-    gap: 20px;
+    list-style: none; /* Remove marcadores de lista */
+    justify-content: flex-start; /* Alinha à esquerda */
+    align-items: center; /* Centraliza os itens verticalmente */
+    gap: 20px; /* Espaçamento entre itens */
+    margin: 0; /* Remove margens extras */
+    padding: 0; /* Remove padding */
+    order: 0;
 }
 
 .menu li a {
-    text-decoration: none;
+    text-decoration: none; /* Remove sublinhado */
     color: white;
-    font-size: 18px;
     font-weight: bold;
+    transition: color 0.3s ease; /* Animação para hover */
 }
 
-.mensagem_login {
-    color: white;
+.menu li a:hover {
+    color: #fdd835; /* Amarelo no hover */
 }
 
-/* Estilo da Introdução */
+/* Botão hambúrguer */
+.hamburger {
+    display: none; /* Oculto em telas grandes */
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para esconder/mostrar o menu */
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+.menu.hidden {
+    display: none;
+}
+
+/* Estilo da seção de Introdução */
 .intro {
     text-align: center;
     padding: 50px 20px;
@@ -54,23 +104,31 @@ header {
     color: #333;
 }
 
-/* Estilo das Dicas (Quato Colunas) */
+/* Rodapé */
+footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo das Dicas (Quatro Colunas) */
 .tips {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
     padding: 40px 20px;
     background-color: #ffffff;
+    flex-wrap: nowrap; /* Permite quebra de linha em telas menores */
 }
 
 .tip {
-    text-align: center;
-    width: 30%;
+    text-align: justify;
+    width: 100%; /* Por padrão, ocupa toda a largura */
+    max-width: 22%; /* Limita o tamanho em telas maiores */
 }
 
 .tip img {
     width: 100%;
-    max-width: 150px;
     height: auto;
 }
 
@@ -95,15 +153,7 @@ header {
     color: #333;
 }
 
-/* Rodapé */
-footer {
-    background-color: #028a0f;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Estilo da seção de ícones sociais */
+/* Ícones sociais */
 .social-icons {
     display: flex;
     justify-content: center;
@@ -114,7 +164,6 @@ footer {
 .social-icons a {
     text-decoration: none;
     color: white;
-    text-align: center;
     transition: transform 0.3s ease;
 }
 
@@ -125,3 +174,173 @@ footer {
 .social-icons i {
     font-size: 28px;
 }
+
+/* .msg - Atualização para o estilo do formulário */
+.menu li a:hover {
+    color: #fdd835; /* Amarelo no hover */
+}
+
+.msg form {
+    display: flex; /* Usar flexbox para alinhar os itens em linha */
+    justify-content: center; /* Alinha os itens no centro */
+    gap: 10px; /* Espaçamento entre os campos */
+    width: 100%;
+    max-width: 600px; /* Limita a largura máxima do formulário */
+    order: 2;
+}
+
+.msg input, .msg button {
+    width: 40%;
+    margin-bottom: 10px;
+    order: 2;
+}
+
+.msg button {
+    all: unset;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    order: 2;
+}
+
+.msg button:hover {
+    background-color: #1b5e20;
+}
+
+@media (max-width: 767px) {
+
+    .logo {
+        max-height: 50px; /* Limita a altura */
+        display: block; /* Garante que não tenha margens extras */
+        order: 0;
+        float: left;
+    }
+    
+    .menu {
+        display: none; /* Esconde o menu em telas pequenas */
+        flex-direction: column; /* Faz os itens ficarem em coluna */
+        background-color: #2e7d32;
+        position: absolute;
+        top: 100%; /* Abaixa o menu */
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .menu.show {
+        display: flex; /* Exibe o menu quando ativado */
+    }
+    /* Exibe o botão hambúrguer em telas menores */
+    .hamburger {
+        display: block; /* Mostra o botão em telas pequenas */
+        background: none;
+        border: none;
+        cursor: pointer;
+        order:1;
+        float: right;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background: white;
+        border-radius: 2px;
+    }
+
+    .menu a {
+        color: white; /* Links dentro do menu dropdown */
+        padding: 10px 0;
+    }
+
+    .menu a:hover {
+        color: #fdd835; /* Efeito hover */
+    }
+
+    header {
+        flex-wrap: wrap; /* Permite quebra do layout no cabeçalho */
+        justify-content: space-between;
+    }
+
+    .intro {
+        text-align: left; /* Alinha a mensagem à esquerda */
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: center; /* Centraliza os itens do menu */
+    }
+
+    .menu.show {
+        display: flex;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .intro h1 {
+        font-size: 28px; /* Reduz o tamanho do título */
+    }
+
+    .intro p {
+        font-size: 16px; /* Reduz o tamanho do texto */
+    }
+
+    .tips {
+        flex-wrap: wrap; /* Permite quebra de linha */
+        flex-direction: column; /* Coloca as dicas em coluna */
+    }
+
+    .tip {
+        max-width: 100%; /* Ocupa toda a largura em telas menores */
+    }
+
+    .call-to-action {
+        font-size: 20px; /* Reduz o tamanho do texto de efeito */
+    }
+
+    footer {
+        font-size: 14px; /* Reduz o tamanho do texto no rodapé */
+    }
+
+    .social-icons {
+        gap: 15px; /* Reduz o espaçamento entre ícones */
+    }
+
+    .social-icons i {
+        font-size: 24px; /* Diminui o tamanho dos ícones */
+    }
+    .msg form {
+        display: flex; /* Usar flexbox para alinhar os itens em linha */
+        justify-content: center; /* Alinha os itens no centro */
+        gap: 10px; /* Espaçamento entre os campos */
+        width: 100%;
+        max-width: 600px; /* Limita a largura máxima do formulário */
+        order: 2;
+    }
+    
+    .msg input, .msg button {
+        width: 30%;
+        margin-bottom: 10px;
+        order: 2;
+    }
+    
+    .msg button {
+        all: unset;
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        order: 2;
+    }
+    
+    .msg button:hover {
+        background-color: #1b5e20;
+    }
+}
+

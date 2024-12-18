@@ -1,61 +1,126 @@
-        {% load static %}   
-        {% include 'recicle/partials/head.html' %}
+% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recicla Aracati</title>
+        <link rel="stylesheet" href="{% static 'css/dicas.css' %}">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/dicas.css'%}">
-        <title>Dicas</title>
     </head>
     <body>
+        <header>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            </a>
+            <nav>
+                <ul class="menu">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'dicas' %}">Dicas de Reciclagem</a></li>
+                    <li><a href="{% url 'parceiros' %}">Endereços de Coleta</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="msg">
+            {% if user.is_authenticated %}
+            <p class="mensagem_login">Bem-vindo(a), {{ user.get_full_name|default:user.username }}!</p>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Sair</button>
+            </form>
 
-         {% include "recicle/partials/header.html" %}
-        
+            {% else %}
+            <form action="{% url 'login' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Usuário" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            {% endif %}
+            </div>
+        </header>
         <main>
             <section class="intro">
-                <h1>Dicas de reciclagem</h1>
-                <p>COLOQUE UM TEXTO INTRODUTORIO</p>
+                <h1>Dicas de Reciclagem</h1>
+                <p>A reciclagem é fundamental para reduzir o impacto ambiental, 
+                    conservando recursos naturais, economizando energia e diminuindo 
+                    a emissão de gases de efeito estufa. Ela contribui para a redução 
+                    de resíduos, evitando que materiais como plásticos e metais se 
+                    acumulem em aterros e poluam o meio ambiente. Além disso, gera empregos, 
+                    estimula a economia local e promove um modelo de economia circular, 
+                    onde os produtos são reutilizados de forma sustentável. A prática da 
+                    reciclagem também aumenta a conscientização sobre a importância de consumir 
+                    de maneira responsável, beneficiando o planeta e as futuras gerações.</p>
             </section>
 
+            <!-- Seção 2: Quatro Colunas -->
             <section class="tips">
                 <div class="tip">
-                  <img src="/static/images/reciclagem_papel.png" alt="Reciclagem de Papel">
-                  <h2>Reciclagem de Papel</h2>
-                  <p>Preencha a coluna com dias sobre reciclagem de papel.</p>
+                    <img src="{% static 'images/reciclagem_papel.jpg' %}" alt="Reciclagem de Papel">
+                    <h2>Reciclagem de Papel</h2>
+                    <p>A reciclagem de papel começa com a coleta e triagem dos materiais, separando o 
+                        papel reciclável de outros resíduos. O papel é então limpo e triturado em pedaços 
+                        pequenos, sendo misturado com água para formar uma pasta chamada polpa. Essa polpa 
+                        passa por um processo de desintegração, onde as impurezas são removidas, e é, em seguida, 
+                        refinada e descolorida, caso necessário. Depois, a polpa é prensada e seca para formar 
+                        novas folhas de papel, que podem ser reutilizadas na produção de novos produtos, como 
+                        papéis, embalagens e materiais de escritório, contribuindo para a preservação de recursos 
+                        naturais e a redução de resíduos.</p>
                 </div>
                 <div class="tip">
-                  <img src="/static/images/reciclagem_plastico.png" alt="Reciclagem de Plástico">
-                  <h2>Reciclagem de Plástico</h2>
-                  <p>Preencha a coluna com dias sobre reciclagem de plástico.</p>
+                    <img src="{% static 'images/reciclagem_plastico.jpg' %}" alt="Reciclagem de Plástico">
+                    <h2>Reciclagem de Plástico</h2>
+                    <p>A reciclagem de plástico começa com a coleta e separação dos diferentes tipos de plásticos, que são identificados por seus códigos de identificação. Após a triagem, os plásticos são limpos para remover impurezas como sujeira, resíduos de alimentos e rótulos. Em seguida, são triturados em pequenos pedaços ou flocos, que são derretidos e transformados em grânulos. Esses grânulos podem ser usados para fabricar novos produtos plásticos, como embalagens, roupas e componentes para outros setores, reduzindo a necessidade de matéria-prima virgem e contribuindo para a diminuição dos impactos ambientais causados pelo descarte inadequado de plásticos.</p>
                 </div>
                 <div class="tip">
-                  <img src="/static/images/reciclagem_vidro.png" alt="Reciclagem de Vidro">
-                  <h2>Reciclagem de Vidro</h2>
-                  <p>Preencha a coluna com dias sobre reciclagem de vidro.</p>
+                    <img src="{% static 'images/reciclagem_vidro.jpg' %}" alt="Reciclagem de Vidro">
+                    <h2>Reciclagem de Vidro</h2>
+                    <p>A reciclagem de vidro começa com a coleta e separação dos materiais, onde o vidro é triado para remover impurezas como tampas e rótulos. Em seguida, ele é lavado para garantir que esteja livre de resíduos. O vidro é então triturado em pequenos pedaços chamados cacos, que são derretidos em fornos a altas temperaturas. O material fundido é moldado em novas formas, como garrafas e frascos, e, após resfriamento, é pronto para ser reutilizado. A reciclagem de vidro é altamente eficiente, pois o material pode ser reciclado infinitamente sem perda de qualidade, o que ajuda a reduzir a necessidade de extração de matérias-primas e a diminuir o impacto ambiental.</p>
                 </div>
                 <div class="tip">
-                  <img src="/static/images/reciclagem_metal.png" alt=alt="Reciclagem de Metal">
-                  <h2>Reciclagem de Metal</h2>
-                  <p>Preencha a coluna com dias sobre reciclagem de metal.</p>
+                    <img src="{% static 'images/reciclagem_metal.jpg' %}" alt="Reciclagem de Metal">
+                    <h2>Reciclagem de Metal</h2>
+                    <p>A reciclagem de metal começa com a coleta de materiais, como latas de alumínio, sucatas de ferro e aço, que são separados de outros resíduos. Em seguida, os metais são limpos para remover impurezas, como etiquetas e resíduos orgânicos. Após a limpeza, eles passam por processos de trituração e compactação, facilitando o transporte e o processamento posterior. O metal triturado é então derretido em altas temperaturas em fornos específicos, onde é purificado e moldado em novas formas, como lingotes ou chapas. Esses produtos reciclados podem ser reutilizados em diversas indústrias, reduzindo a extração de recursos naturais, economizando energia e minimizando o impacto ambiental.</p>
                 </div>
             </section>
 
+            <!-- Seção 3: Frase de Efeito -->
             <section class="call-to-action">
-                <p>"O ambiente é o que somos em nós mesmos. Nós e o ambiente somos dois processos diferentes; nós somos o ambiente e o ambiente somos nós."</p> 1 
+                <p>“O ambiente é o que somos em nós mesmos. Nós e o ambiente somos dois 
+                    processos diferentes; nós somos o ambiente e o ambiente somos nós.”
+                </p>
                 <h5>Jiddu Krishnamurti</h5>
             </section>
+        </main>
 
-            <footer>
-              <div class="social-icons">
+        <footer>
+            <p>&copy; 2024 Recicla Aracati. Todos os direitos reservados aos alunos do 2 ano integrado, IFCE Aracati.</p>
+            <div class="social-icons">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-facebook"></i>
+                    <i class="fab fa-facebook"></i>
                 </a>
                 <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-whatsapp"></i>
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-instagram"></i>
+                    <i class="fab fa-instagram"></i>
                 </a>
-              </div>
-            </footer>
-        </main>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hamburger = document.querySelector(".hamburger");
+                const menu = document.querySelector(".menu");
+            
+                hamburger.addEventListener("click", function () {
+                    menu.classList.toggle("show");
+                });
+            });
+        </script>
     </body>
-               
-</html>        
+</html>

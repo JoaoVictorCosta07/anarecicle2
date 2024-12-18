@@ -21,6 +21,7 @@ def cadastro(request):
         form = ColetaForm()
     return render(request, 'recicle/pages/cadastro.html', {'form': form})
 
+@login_required
 def parceiros(request):
     if User.is_authenticated():
         coletas = Coleta.objects.all()  # Busca todos os registros do modelo Coleta
@@ -28,6 +29,6 @@ def parceiros(request):
     else:
         return redirect('/')
     
-@login_required
+
 def dicas(request):
     return render(request, 'recicle/pages/dicas.html')

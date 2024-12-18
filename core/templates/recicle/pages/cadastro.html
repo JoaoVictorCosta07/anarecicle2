@@ -1,9 +1,27 @@
-{% load static %}
-    {% include 'recicle/partials/head.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Coleta</title>
-
+    <link rel="stylesheet" type="text/css" href="/static/css/formulario.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <header>
+        <a href="/">
+            <img src="/static/images/logo.png" alt="Logo" class="logo">
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/dicas/">Dicas de Reciclagem</a></li>
+                <li><a href="/parceiros/">Endereços de Coleta</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <span style="padding-right: 434px;"></span>
+            </ul>
+        </nav>
+    </header>
     <h1>Cadastro de Coleta</h1>
 
     <div id="messageModal" class="modal">
@@ -13,48 +31,112 @@
         </div>
     </div>
     
-    <form method="post" action="{% url 'cadastro' %}">
-        {% csrf_token %}
+    <form method="post" action="/cadastro/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="DwIoCKoWEQhzABV0smEjuUAEXqwt1MOAqHqye5a8Ebv8AjHWEoG6p9t309ll3mXz">
         
         <h3>Endereço</h3>
         <div class="input-group">
-            {{ form.rua }}
+            <input type="text" name="rua" placeholder="Digite sua rua e número" maxlength="100" required id="id_rua">
         </div>
         <div class="input-group">
-            {{ form.numero }} <!-- Campo de número -->
+            <input type="text" name="numero" placeholder="Digite o seu telefone" maxlength="10" required id="id_numero"> <!-- Campo de número -->
         </div>
         <div class="input-group">
-            {{ form.bairro }}
+            <input type="text" name="bairro" placeholder="Digite seu bairro" maxlength="100" required id="id_bairro">
         </div>
 
         <h3>Materiais</h3>
         <div class="form-checkbox-group">
-            {% for material in form.materiais %}
+            
                 <div class="form-checkbox">
-                    <label for="{{ material.id_for_label }}">{{ material }}</label> <!-- Checkbox -->
+                    <label for="id_materiais_0"><label for="id_materiais_0"><input type="checkbox" name="materiais" value="1" id="id_materiais_0">
+ Papel</label></label> <!-- Checkbox -->
                 </div>
-            {% endfor %}
+            
+                <div class="form-checkbox">
+                    <label for="id_materiais_1"><label for="id_materiais_1"><input type="checkbox" name="materiais" value="2" id="id_materiais_1">
+ Metal</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_materiais_2"><label for="id_materiais_2"><input type="checkbox" name="materiais" value="3" id="id_materiais_2">
+ Plástico</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_materiais_3"><label for="id_materiais_3"><input type="checkbox" name="materiais" value="4" id="id_materiais_3">
+ Papelão</label></label> <!-- Checkbox -->
+                </div>
+            
         </div>
 
         <h3>Dias de Coleta</h3>
         <div class="form-checkbox-group">
-            {% for dia in form.dias %}
+            
                 <div class="form-checkbox">
-                    <label for="{{ dia.id_for_label }}">{{ dia }}</label> <!-- Checkbox -->
+                    <label for="id_dias_0"><label for="id_dias_0"><input type="checkbox" name="dias" value="1" id="id_dias_0">
+ Segunda-feira</label></label> <!-- Checkbox -->
                 </div>
-            {% endfor %}
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_1"><label for="id_dias_1"><input type="checkbox" name="dias" value="2" id="id_dias_1">
+ Terça-feira</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_2"><label for="id_dias_2"><input type="checkbox" name="dias" value="3" id="id_dias_2">
+ Quarta-feira</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_3"><label for="id_dias_3"><input type="checkbox" name="dias" value="4" id="id_dias_3">
+ Quinta-feira</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_4"><label for="id_dias_4"><input type="checkbox" name="dias" value="5" id="id_dias_4">
+ Sexta-feira</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_5"><label for="id_dias_5"><input type="checkbox" name="dias" value="6" id="id_dias_5">
+ Sábado</label></label> <!-- Checkbox -->
+                </div>
+            
+                <div class="form-checkbox">
+                    <label for="id_dias_6"><label for="id_dias_6"><input type="checkbox" name="dias" value="7" id="id_dias_6">
+ Domingo</label></label> <!-- Checkbox -->
+                </div>
+            
         </div>
 
         <h3>Turno</h3>
         <div class="form-radio-group">
-            {% for turno in form.turno %}
+            
                 <div class="form-radio">
-                    <label for="{{ turno.id_for_label }}">{{ turno }}</label> <!-- Radio -->
+                    <label for="id_turno_0"><label for="id_turno_0"><input type="radio" name="turno" value="" id="id_turno_0" required checked>
+ ---------</label></label> <!-- Radio -->
                 </div>
-            {% endfor %}
+            
+                <div class="form-radio">
+                    <label for="id_turno_1"><label for="id_turno_1"><input type="radio" name="turno" value="manha" id="id_turno_1" required>
+ Manhã</label></label> <!-- Radio -->
+                </div>
+            
+                <div class="form-radio">
+                    <label for="id_turno_2"><label for="id_turno_2"><input type="radio" name="turno" value="tarde" id="id_turno_2" required>
+ Tarde</label></label> <!-- Radio -->
+                </div>
+            
+                <div class="form-radio">
+                    <label for="id_turno_3"><label for="id_turno_3"><input type="radio" name="turno" value="noite" id="id_turno_3" required>
+ Noite</label></label> <!-- Radio -->
+                </div>
+            
         </div>
 
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn-enviar">Enviar</button>
+
     </form>
     
     <script>
@@ -75,11 +157,21 @@
                 document.getElementById("messageModal").style.display = "none";
             }
         }
-        {% if messages %}
-            {% for message in messages %}
-                showModal("{{ message }}", "{{ message.tags }}" == "success");
-            {% endfor %}
-        {% endif %}
+        
     </script>
+    <footer>
+        <p>&copy; 2024 Recicla Aracati. Todos os direitos reservados aos alunos do 2 ano integrado, IFCE Aracati.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </footer>
 </body>
 </html>
