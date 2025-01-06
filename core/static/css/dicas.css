@@ -129,7 +129,7 @@ footer {
 
 .tip img {
     width: 100%;
-    height: auto;
+    height: 250px;
 }
 
 .tip h2 {
@@ -141,6 +141,10 @@ footer {
 .tip p {
     font-size: 16px;
     color: #555;
+}
+
+.imagens {
+    height: 200px;    
 }
 
 /* Estilo da Frase de Efeito */
