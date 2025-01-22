@@ -32,7 +32,7 @@
     </div>
     
     <form method="post" action="/cadastro/">
-        <input type="hidden" name="csrfmiddlewaretoken" value="DwIoCKoWEQhzABV0smEjuUAEXqwt1MOAqHqye5a8Ebv8AjHWEoG6p9t309ll3mXz">
+        {% csrf_token %}
         
         <h3>Endereço</h3>
         <div class="input-group">
@@ -112,12 +112,6 @@
 
         <h3>Turno</h3>
         <div class="form-radio-group">
-            
-                <div class="form-radio">
-                    <label for="id_turno_0"><label for="id_turno_0"><input type="radio" name="turno" value="" id="id_turno_0" required checked>
- ---------</label></label> <!-- Radio -->
-                </div>
-            
                 <div class="form-radio">
                     <label for="id_turno_1"><label for="id_turno_1"><input type="radio" name="turno" value="manha" id="id_turno_1" required>
  Manhã</label></label> <!-- Radio -->

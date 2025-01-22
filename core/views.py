@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ColetaForm
-from django.contrib import messages
+from django.http import HttpResponse
 from .models import Coleta  # Importe seu modelo Coleta
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,11 +12,10 @@ def cadastro(request):
     if request.method == 'POST':
         form = ColetaForm(request.POST)
         if form.is_valid():
-            coleta = form.save()
-            messages.success(request, 'Cadastro realizado com sucesso!')
-            return redirect('cadastro')
+            form.save()
+            return HttpResponse('Sucesso, você pode voltar para a página inicial agora')
         else:
-            messages.error(request, 'Verifique se todos os campos foram preenchidos corretamente')
+            return HttpResponse('ERRO')
     else:  
         form = ColetaForm()
     return render(request, 'recicle/pages/cadastro.html', {'form': form})
